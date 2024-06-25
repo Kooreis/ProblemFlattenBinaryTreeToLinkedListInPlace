@@ -1,9 +1,15 @@
-using System;
-
-public class TreeNode
+public class Solution
 {
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int x) { val = x; }
+    private TreeNode prev = null;
+
+    public void Flatten(TreeNode root)
+    {
+        if (root == null)
+            return;
+        Flatten(root.right);
+        Flatten(root.left);
+        root.right = prev;
+        root.left = null;
+        prev = root;
+    }
 }
